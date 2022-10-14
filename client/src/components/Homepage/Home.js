@@ -8,6 +8,7 @@ import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 import useStyles from "./styles";
 import { getPosts, getPostsBySearch } from "../../actions/posts";
+import Pagination from "../Pagination";
 
 function useQuery() {
 	return new URLSearchParams(useLocation().search);
@@ -56,7 +57,7 @@ const Home = () => {
 								name="search"
 								variant="outlined"
 								label="Search User"
-								onKeyPress={handleKeyPress}
+								onKeyDown={handleKeyPress}
 								fullWidth
 								value={search}
 								onChange={(e) => setSearch(e.target.value)}
@@ -66,6 +67,9 @@ const Home = () => {
 							</Button>
 						</AppBar>
 						<Form currentId={currentId} setCurrentId={setCurrentId} />
+						<Paper elevation={6}>
+							<Pagination />
+						</Paper>
 					</Grid>
 				</Grid>
 			</Container>

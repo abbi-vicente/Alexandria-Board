@@ -17,8 +17,8 @@ const App = () => {
 					<Route path="/posts" element={<Home />} />
 					<Route path="/" element={<Navigate replace to="/posts" />} />
 					<Route path="/posts/search" element={<Home />} />
-					<Route path="/posts/:id" element={PostDetails} />
-					<Route path="/auth" element={() => (!user ? <Auth /> : <Navigate replace to="/" />)} />
+					<Route path="/posts/:id" element={PostDetails()} />
+					<Route path="/auth" element={() => (!user ? <Auth /> : <Navigate replace to="/posts" />)} />
 				</Routes>
 			</Container>
 		</BrowserRouter>
