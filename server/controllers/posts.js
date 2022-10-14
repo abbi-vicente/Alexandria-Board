@@ -17,6 +17,19 @@ const getPosts = async (req, res) => {
 	}
 };
 
+const getPostsBySearch = async (req, res) => {
+	const { searchQuery } = req.query;
+	try {
+		const name = new RegExp(searchQuery, "i");
+
+		const posts = await PostMessage.find({ name });
+
+		res.json({ data: posts });
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+};
+
 const getPost = async (req, res) => {
 	const { id } = req.params;
 
@@ -86,4 +99,4 @@ const likePost = async (req, res) => {
 	res.status(200).json(updatedPost);
 };
 
-module.exports = { getPost, getPosts, createPost, updatePost, deletePost, likePost };
+module.exports = { getPost, getPosts, getPostsBySearch, createPost, updatePost, deletePost, likePost };
