@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardActions, CardContent, CardMedia, Button, Typography } from "@material-ui/core";
+import { Card, CardActions, CardContent, CardMedia, Button, ButtonBase, Typography } from "@material-ui/core";
 import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
 import DeleteIcon from "@material-ui/icons/Delete";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
@@ -8,11 +8,13 @@ import useStyles from "./styles";
 import { useDispatch } from "react-redux";
 import { deletePost, likePost } from "../../../actions/posts";
 import ThumbUpAltOutlined from "@material-ui/icons/ThumbUpAltOutlined";
+import { useNavigate } from "react-router-dom";
 
 const Post = ({ post, setCurrentId }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const user = JSON.parse(localStorage.getItem("profile"));
+	const navigate = useNavigate();
 
 	const Likes = () => {
 		if (post.likes.length > 0) {
@@ -39,6 +41,7 @@ const Post = ({ post, setCurrentId }) => {
 			</>
 		);
 	};
+	const openPost = (e) => navigate(`/posts/${post._id}`);
 
 	return (
 		<Card className={classes.card}>
@@ -47,6 +50,7 @@ const Post = ({ post, setCurrentId }) => {
 				<Typography variant="h6">{post.name}</Typography>
 				<Typography variant="body2">{moment(post.createdAt).fromNow()}</Typography>
 			</div>
+
 			{user?.result?._id === post?.creator && (
 				<div className={classes.overlay2}>
 					<Button style={{ color: "white" }} size="small" onClick={() => setCurrentId(post?._id)}>
@@ -67,9 +71,16 @@ const Post = ({ post, setCurrentId }) => {
 					{post.message}
 				</Typography>
 			</CardContent>
+
 			<CardActions className={classes.cardActions}>
 				<Button size="small" color="primary" disabled={!user?.result} onClick={() => dispatch(likePost(post._id))}>
 					<Likes />
+				</Button>
+				{/* <Button className={classes.cardAction} onClick={openPost}>
+					Comments
+				</Button> */}
+				<Button component="span" name="test" className={classes.cardAction} onClick={openPost}>
+					Comments
 				</Button>
 				{user?.result?._id === post?.creator && (
 					<Button

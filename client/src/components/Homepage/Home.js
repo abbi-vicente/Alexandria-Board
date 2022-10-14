@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Container, Grow, Grid, Paper, AppBar, TextField, Button } from "@material-ui/core";
 import { useNavigate, useLocation } from "react-router-dom";
-// for tags
-import ChipInput from "material-ui-chip-input";
 import Posts from "../Posts/Posts";
 import Form from "../Form/Form";
 import useStyles from "./styles";
-import { getPosts, getPostsBySearch } from "../../actions/posts";
+import { getPostsBySearch } from "../../actions/posts";
 import Pagination from "../Pagination";
 
 function useQuery() {
@@ -23,10 +21,6 @@ const Home = () => {
 	const searchQuery = query.get("searchQuery");
 	const classes = useStyles();
 	const [search, setSearch] = useState("");
-
-	useEffect(() => {
-		dispatch(getPosts());
-	}, [currentId, dispatch]);
 
 	const searchUserPost = () => {
 		if (search.trim()) {
@@ -67,9 +61,11 @@ const Home = () => {
 							</Button>
 						</AppBar>
 						<Form currentId={currentId} setCurrentId={setCurrentId} />
-						<Paper elevation={6}>
-							<Pagination />
-						</Paper>
+						{!searchQuery && (
+							<Paper elevation={6}>
+								<Pagination page={page} className={classes.pagination} />
+							</Paper>
+						)}
 					</Grid>
 				</Grid>
 			</Container>
