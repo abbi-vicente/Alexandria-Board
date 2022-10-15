@@ -6,6 +6,7 @@ import {
 	START_LOADING,
 	END_LOADING,
 	CREATE,
+	COMMENT,
 	UPDATE,
 	DELETE,
 } from "../constants/actionTypes";
@@ -74,6 +75,17 @@ export const updatePost = (id, post) => async (dispatch) => {
 		const { data } = await api.updatePost(id, post);
 
 		dispatch({ type: UPDATE, payload: data });
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+// write a comment
+export const commentPost = (value, id) => async (dispatch) => {
+	try {
+		const { data } = await api.comment(value, id);
+		dispatch({ type: COMMENT, payload: data });
+		return data.comments;
 	} catch (error) {
 		console.log(error);
 	}

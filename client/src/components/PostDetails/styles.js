@@ -2,10 +2,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 export default makeStyles((theme) => ({
 	media: {
-		borderRadius: "20px",
+		borderRadius: "2vh",
 		objectFit: "cover",
 		width: "100%",
-		maxHeight: "600px",
+		maxHeight: "60vh",
 	},
 	card: {
 		display: "flex",
@@ -16,12 +16,12 @@ export default makeStyles((theme) => ({
 		},
 	},
 	section: {
-		borderRadius: "20px",
-		margin: "10px",
+		borderRadius: "2vh",
+		margin: "1vh",
 		flex: 1,
 	},
 	imageSection: {
-		marginLeft: "20px",
+		marginLeft: "2vh",
 		[theme.breakpoints.down("sm")]: {
 			marginLeft: 0,
 		},
@@ -36,8 +36,17 @@ export default makeStyles((theme) => ({
 		display: "flex",
 		justifyContent: "center",
 		alignItems: "center",
-		padding: "20px",
-		borderRadius: "15px",
+		padding: "2vh",
+		borderRadius: "1.5vh",
 		height: "39vh",
+	},
+	commentsOuter: {
+		display: "flex",
+		justifyContent: "space-between",
+	},
+	commentsInner: {
+		height: "20vh",
+		overflowY: "auto",
+		marginRight: "3vh",
 	},
 }));
