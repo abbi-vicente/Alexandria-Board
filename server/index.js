@@ -22,7 +22,6 @@ app.get("/", (req, res) => {
 	res.send("App is running");
 });
 
-// const CONNECTION_URL = "mongodb+srv://p6-mern:p6-mern123@cluster0.pqt4dgk.mongodb.net/?retryWrites=true&w=majority";
 const PORT = process.env.PORT || 8000;
 
 try {
