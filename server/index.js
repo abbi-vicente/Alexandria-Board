@@ -32,6 +32,6 @@ try {
 
 app.use(cors());
 
-app.listen(port, () => {
+app.listen(PORT, () => {
 	console.log(`${PORT}`);
 });
