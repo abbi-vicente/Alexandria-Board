@@ -6,7 +6,7 @@ const dotenv = require("dotenv");
 const postRoutes = require("./routes/posts");
 const userRoutes = require("./routes/users");
 
-const port = 8000;
+//const port = 8000;
 
 const app = express();
 dotenv.config();
@@ -18,7 +18,7 @@ app.use(cors());
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 
-const PORT = process.env.PORT || 8000;
+const port = process.env.PORT || 8000;
 
 try {
 	mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -28,6 +28,6 @@ try {
 
 app.use(cors());
 
-app.listen(PORT, () => {
-	console.log(`${PORT}`);
+app.listen(port, () => {
+	console.log(`${port}`);
 });
